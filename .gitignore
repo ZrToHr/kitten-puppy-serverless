@@ -7,3 +7,11 @@ jspm_packages
 
 # esbuild directories
 .esbuild
+
+# infrastructure directories
+/infrastructure/node_modules
+/infrastructure/*.js
+/infrastructure/!jest.config.js
+/infrastructure/*.d.ts
+/infrastructure/.cdk.staging
+/infrastructure/cdk.out
