@@ -37,6 +37,6 @@ jobs:
 
       - name: CDK Deploy
         run: |
-          cdk bootstrap --context @aws-cdk/core:newStyleStackSynthesis=1 --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess aws://accountid/region
+          cdk bootstrap --context @aws-cdk/core:newStyleStackSynthesis=1 --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess aws://849944574596/ap-southeast-2
           cdk deploy
         working-directory: infrastructure
