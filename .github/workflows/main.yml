@@ -1,4 +1,4 @@
-name: Deploy AWS CDK
+name: CDK Serverless Deployment
 
 on:
   #   push:
@@ -28,15 +28,24 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install AWS CDK
-        run: 'npm install -g aws-cdk'
+      - name: Install CDK and Serverless
+        run: 'npm install -g aws-cdk serverless'
 
-      - name: Install Infrastructure Depedency
+      - name: Install Infrastructure Depedencies
         run: yarn install
         working-directory: infrastructure
 
-      - name: CDK Deploy
+      - name: Deploy CDK Infrastructure
         run: |
-          cdk bootstrap --context @aws-cdk/core:newStyleStackSynthesis=1 --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess aws://849944574596/ap-southeast-2
+          cdk bootstrap --context @aws-cdk/core:newStyleStackSynthesis=1 --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess aws://${{secrets.AWS_ACCOUNT_ID}}/ap-southeast-2
           cdk deploy
         working-directory: infrastructure
+
+      - name: Install Serverless Depedencies
+        run: yarn install
+
+      - name: Serverless AWS Authentication
+        run: sls config credentials --provider aws --key ${{ secrets.AWS_DEV_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_DEV_ACCESS_KEY }}
+
+      - name: Deploy Serverless Lambda
+        run: sls deploy
