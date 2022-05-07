@@ -9,7 +9,7 @@ export default {
         method: 'post',
         path: 'hello',
         authorizer: {
-          arn: '${cf:InfrastructureStack:userPoolArn}',
+          arn: '${cf:InfrastructureStack.userPoolArn}',
         },
         request: {
           schemas: {
