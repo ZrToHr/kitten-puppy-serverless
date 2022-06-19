@@ -29,9 +29,6 @@ export class AppAuth extends Construct {
       signInAliases: {
         email: true,
       },
-      customAttributes: {
-        csmUsername: new StringAttribute(),
-      },
       passwordPolicy: {
         minLength: 12,
         requireLowercase: true,
