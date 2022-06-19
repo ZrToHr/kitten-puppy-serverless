@@ -29,16 +29,8 @@ export class AppAuth extends Construct {
         email: true,
       },
       standardAttributes: {
-        fullname: {
+        preferredUsername: {
           required: true,
-          mutable: true,
-        },
-        phoneNumber: {
-          required: false,
-          mutable: true,
-        },
-        profilePicture: {
-          required: false,
           mutable: true,
         },
       },
