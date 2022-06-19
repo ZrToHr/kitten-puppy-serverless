@@ -1,6 +1,7 @@
 import {
   IUserPool,
   IUserPoolClient,
+  StringAttribute,
   UserPool,
   UserPoolClient,
   VerificationEmailStyle,
@@ -28,11 +29,8 @@ export class AppAuth extends Construct {
       signInAliases: {
         email: true,
       },
-      standardAttributes: {
-        preferredUsername: {
-          required: true,
-          mutable: true,
-        },
+      customAttributes: {
+        csmUsername: new StringAttribute(),
       },
       passwordPolicy: {
         minLength: 12,
