@@ -1,6 +1,7 @@
 import type { AWS } from '@serverless/typescript';
 
 import hello from '@functions/hello';
+import RegisterInDynamo from '@functions/RegisterInDynamo';
 
 const serverlessConfiguration: AWS = {
   service: 'kitten-puppy-serverless',
@@ -19,7 +20,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { hello },
+  functions: { hello, RegisterInDynamo },
   package: { individually: true },
   custom: {
     esbuild: {
