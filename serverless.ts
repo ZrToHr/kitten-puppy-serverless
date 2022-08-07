@@ -1,7 +1,7 @@
 import type { AWS } from '@serverless/typescript';
 
 import hello from '@functions/hello';
-import RegisterInDynamo from '@functions/RegisterInDynamo';
+import UserRegister from '@functions/UserRegister';
 
 const serverlessConfiguration: AWS = {
   service: 'kitten-puppy-serverless',
@@ -10,6 +10,9 @@ const serverlessConfiguration: AWS = {
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
+    iam: {
+      role: '${cf:InfrastructureStack.kp-executing-role-arn}',
+    },
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
@@ -20,7 +23,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { hello, RegisterInDynamo },
+  functions: { hello, UserRegister },
   package: { individually: true },
   custom: {
     esbuild: {

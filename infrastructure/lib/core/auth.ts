@@ -18,7 +18,7 @@ export class AppAuth extends Construct {
     this.userPool = new UserPool(this, 'KittenPuppyUserPool', {
       selfSignUpEnabled: true,
       userVerification: {
-        emailSubject: 'Verify your email for your little kitten and puppy',
+        emailSubject: 'Verify your email for your kitten and puppy',
         emailBody: 'Thanks for signing up! Your verification code is {####}',
         emailStyle: VerificationEmailStyle.CODE,
         smsMessage: 'Thanks for signing up! Your verification code is {####}',

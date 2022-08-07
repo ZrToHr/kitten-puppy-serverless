@@ -1,2 +1,2 @@
 export { default as hello } from './hello';
-export { default as RegisterInDynamo } from './RegisterInDynamo';
+export { default as UserRegister } from './UserRegister';
