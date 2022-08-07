@@ -38,7 +38,7 @@ jobs:
       - name: Deploy CDK Infrastructure
         run: |
           cdk bootstrap --context @aws-cdk/core:newStyleStackSynthesis=1 --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess aws://${{secrets.AWS_ACCOUNT_ID}}/ap-southeast-2
-          cdk deploy
+          cdk deploy --require-approval never
         working-directory: infrastructure
 
       - name: Install Serverless Depedencies
@@ -48,4 +48,4 @@ jobs:
         run: sls config credentials --provider aws --key ${{ secrets.AWS_DEV_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_DEV_ACCESS_KEY }}
 
       - name: Deploy Serverless Lambda
-        run: sls deploy --region ap-southeast-2 --require-approval never
+        run: sls deploy --region ap-southeast-2
