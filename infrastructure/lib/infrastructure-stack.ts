@@ -50,7 +50,7 @@ export class InfrastructureStack extends Stack {
     });
 
     // kitten-puppy executing lambda role
-    const executingRole = new Role(this, 'kp-executing-role', {
+    const executingRole = new Role(this, 'kpExecutingRoleArn', {
       assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
     });
 
@@ -84,7 +84,7 @@ export class InfrastructureStack extends Stack {
       value: albumTable.tableArn,
     });
 
-    new CfnOutput(this, 'kp-executing-role-arn', {
+    new CfnOutput(this, 'kpExecutingRoleArn', {
       value: executingRole.roleArn,
     });
   }

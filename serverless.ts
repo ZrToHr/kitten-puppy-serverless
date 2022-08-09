@@ -11,7 +11,7 @@ const serverlessConfiguration: AWS = {
     name: 'aws',
     runtime: 'nodejs14.x',
     iam: {
-      role: '${cf:InfrastructureStack.kp-executing-role-arn}',
+      role: '${cf:InfrastructureStack.kpExecutingRoleArn}',
     },
     apiGateway: {
       minimumCompressionSize: 1024,
