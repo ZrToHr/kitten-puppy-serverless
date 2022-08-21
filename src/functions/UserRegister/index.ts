@@ -5,7 +5,7 @@ export default {
   events: [
     {
       cognitoUserPool: {
-        pool: '${cf:InfrastructureStack.userPoolArn}',
+        pool: 'CognitoUserPool',
         trigger: 'PostConfirmation' as const,
         existing: true,
         forceDeploy: false,
