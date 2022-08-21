@@ -28,20 +28,23 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install CDK and Serverless
-        run: 'npm install -g aws-cdk serverless'
+#      - name: Install CDK
+#        run: 'npm install -g aws-cdk'
+#
+#      - name: Install Infrastructure Dependencies
+#        run: yarn install
+#        working-directory: infrastructure
+#
+#      - name: Deploy CDK Infrastructure
+#        run: |
+#          cdk bootstrap --context @aws-cdk/core:newStyleStackSynthesis=1 --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess aws://${{secrets.AWS_ACCOUNT_ID}}/ap-southeast-2
+#          cdk deploy --require-approval never
+#        working-directory: infrastructure
 
-      - name: Install Infrastructure Depedencies
-        run: yarn install
-        working-directory: infrastructure
+      - name: Install Serverless
+        run: yarn global add serverless
 
-      - name: Deploy CDK Infrastructure
-        run: |
-          cdk bootstrap --context @aws-cdk/core:newStyleStackSynthesis=1 --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess aws://${{secrets.AWS_ACCOUNT_ID}}/ap-southeast-2
-          cdk deploy --require-approval never
-        working-directory: infrastructure
-
-      - name: Install Serverless Depedencies
+      - name: Restore Dependencies
         run: yarn install
 
       - name: Serverless AWS Authentication
