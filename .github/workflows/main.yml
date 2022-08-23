@@ -1,4 +1,4 @@
-name: CDK Serverless Deployment
+name: Serverless Deployment
 
 on:
   #   push:
