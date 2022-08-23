@@ -1,10 +1,10 @@
 import type { AWS } from '@serverless/typescript';
 
-const AssetS3bucket: AWS['resources']['Resources'] = {
-  AssetS3Bucket: {
+const AssetBuckets: AWS['resources']['Resources'] = {
+  AlbumS3Bucket: {
     Type: 'AWS::S3::Bucket',
     Properties: {
-      BucketName: 'kitten-puppy-album-storage',
+      BucketName: '${self:custom.assetBuckets.AlbumBucket}',
       AccessControl: 'BucketOwnerFullControl',
       CorsConfiguration: {
         CorsRules: [
@@ -26,4 +26,4 @@ const AssetS3bucket: AWS['resources']['Resources'] = {
   },
 };
 
-export default AssetS3bucket;
+export default AssetBuckets;

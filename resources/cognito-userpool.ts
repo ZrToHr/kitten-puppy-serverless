@@ -41,7 +41,7 @@ const CognitoResources: AWS['resources']['Resources'] = {
   CognitoUserPoolClient: {
     Type: 'AWS::Cognito::UserPoolClient',
     Properties: {
-      ClientName: 'kitten-puppy-auth-pool-client',
+      ClientName: '${self:custom.authPoolName}',
       GenerateSecret: false,
       UserPoolId: {
         Ref: 'CognitoUserPool',
