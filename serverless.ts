@@ -43,12 +43,12 @@ const serverlessConfiguration: AWS = {
   package: { individually: true },
   custom: {
     tables: {
-      AlbumTable: 'AlbumTable',
+      AlbumTable: 'kp-album-table',
     },
     assetBuckets: {
-      AlbumBucket: 'AlbumBucket',
+      AlbumBucket: 'kp-album-bucket',
     },
-    authPoolName: 'AlbumAuthPool',
+    authPoolName: 'kp-album-auth-pool',
     esbuild: {
       bundle: true,
       minify: false,
