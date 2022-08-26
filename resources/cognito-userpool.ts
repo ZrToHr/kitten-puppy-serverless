@@ -24,12 +24,6 @@ const CognitoResources: AWS['resources']['Resources'] = {
       },
       Schema: [
         {
-          Name: 'album_name',
-          AttributeDataType: 'String',
-          Mutable: false,
-          Required: true,
-        },
-        {
           Name: 'email',
           AttributeDataType: 'String',
           Mutable: false,
