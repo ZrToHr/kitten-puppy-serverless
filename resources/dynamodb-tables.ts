@@ -5,7 +5,6 @@ const AlbumTable: AWS['resources']['Resources'] = {
     Type: 'AWS::DynamoDB::Table',
     Properties: {
       TableName: '${self:custom.tables.AlbumTable}',
-      BillingMode: 'PAY_PER_REQUEST',
       KeySchema: [
         {
           AttributeName: 'UserId',
