@@ -1,4 +1,4 @@
-export const CorsSettings = {
+export const corsSettings = {
   headers: [
     // Specify allowed headers
     'Content-Type',
@@ -19,7 +19,7 @@ interface Authorizer {
   };
 }
 
-export const Authorizer: Authorizer = {
+export const authorizer: Authorizer = {
   name: 'authorizer',
   type: 'COGNITO_USER_POOLS',
   arn: { 'Fn::GetAtt': ['CognitoUserPool', 'Arn'] },

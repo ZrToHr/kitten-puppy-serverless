@@ -1,14 +1,15 @@
 import { handlerPath } from '@libs/handler-resolver';
+import { authorizer, corsSettings } from '@libs/lambda-events';
 
 export default {
   handler: `${handlerPath(__dirname)}/handler.main`,
   events: [
     {
-      cognitoUserPool: {
-        pool: 'CognitoUserPool',
-        trigger: 'PostConfirmation' as const,
-        existing: true,
-        forceDeploy: false,
+      http: {
+        method: 'post',
+        path: 'register',
+        cors: corsSettings,
+        authorizer,
       },
     },
   ],

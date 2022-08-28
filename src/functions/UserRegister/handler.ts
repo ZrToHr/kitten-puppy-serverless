@@ -1,15 +1,14 @@
-import { PostConfirmationTriggerEvent } from 'aws-lambda';
 import { randomUUID } from 'crypto';
-
-import { formatJSONResponse } from '@libs/api-gateway';
+import { formatJSONResponse, ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
 import Dynamo from '../../services/DynamoDB';
+import { middyfy } from '@libs/lambda';
+import schema from '@functions/UserRegister/schema';
 
-const UserRegister = async (event: PostConfirmationTriggerEvent) => {
-  console.log('Posted Confirmation triggered: ', event.request.userAttributes);
+const UserRegister: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async event => {
   try {
     const data = {
       UserId: randomUUID(),
-      AlbumOwner: event.request.userAttributes['name'],
+      AlbumOwner: event.body.name,
     };
 
     await Dynamo.write({
@@ -21,7 +20,10 @@ const UserRegister = async (event: PostConfirmationTriggerEvent) => {
   } catch (e) {
     console.log('User Register Failed: ', e.message);
   }
-  return formatJSONResponse({ event });
+  return formatJSONResponse({
+    message: `Hello ${event.body.name}, welcome to the exciting Serverless world!`,
+    event,
+  });
 };
 
-export const main = UserRegister;
+export const main = middyfy(UserRegister);

@@ -1,6 +1,4 @@
 import type { AWS } from '@serverless/typescript';
-
-import hello from '@functions/hello';
 import UserRegister from '@functions/UserRegister';
 import AlbumTable from 'resources/dynamodb-tables';
 import CognitoResources from './resources/cognito-userpool';
@@ -39,7 +37,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { hello, UserRegister },
+  functions: { UserRegister },
   package: { individually: true },
   custom: {
     tables: {
