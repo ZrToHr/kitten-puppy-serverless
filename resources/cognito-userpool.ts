@@ -1,10 +1,10 @@
 import type { AWS } from '@serverless/typescript';
 
 const CognitoResources: AWS['resources']['Resources'] = {
-  CognitoUserPool: {
+  CognitoUserPoolAuthPool: {
     Type: 'AWS::Cognito::UserPool',
     Properties: {
-      UserPoolName: 'kitten-puppy-auth-pool',
+      UserPoolName: '${self:custom.authPoolName}',
       UsernameAttributes: ['email'],
       AutoVerifiedAttributes: ['email'],
       MfaConfiguration: 'OFF',
@@ -32,13 +32,13 @@ const CognitoResources: AWS['resources']['Resources'] = {
       ],
     },
   },
-  CognitoUserPoolClient: {
+  CognitoUserPoolClientAuthPoolClient: {
     Type: 'AWS::Cognito::UserPoolClient',
     Properties: {
-      ClientName: '${self:custom.authPoolName}',
+      ClientName: '${self:custom.authPoolClientName}',
       GenerateSecret: false,
       UserPoolId: {
-        Ref: 'CognitoUserPool',
+        Ref: 'CognitoUserPoolAuthPool',
       },
     },
   },

@@ -47,6 +47,7 @@ const serverlessConfiguration: AWS = {
       AlbumBucket: 'kp-album-bucket',
     },
     authPoolName: 'kp-album-auth-pool',
+    authPoolClientName: 'kp-album-auth-pool-client',
     esbuild: {
       bundle: true,
       minify: false,
