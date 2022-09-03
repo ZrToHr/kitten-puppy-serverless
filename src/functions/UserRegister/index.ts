@@ -13,7 +13,7 @@ export default {
     // },
     {
       cognitoUserPool: {
-        pool: 'AuthPool',
+        pool: '${self:custom.authPoolName}',
         trigger: 'PostConfirmation' as const,
         existing: true,
         forceDeploy: false,
