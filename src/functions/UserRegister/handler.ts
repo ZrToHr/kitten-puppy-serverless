@@ -12,13 +12,14 @@ const UserRegister = async (event: PostConfirmationTriggerEvent) => {
 
     await Dynamo.write({
       data: data,
-      tableName: process.env.singleTable,
+      tableName: process.env.AlbumTable,
     });
 
     console.log('User Register Succeeded with: ', data);
   } catch (e) {
     console.log('User Register Failed: ', e.message);
   }
+  // return original event to cognito
   return event;
 };
 
