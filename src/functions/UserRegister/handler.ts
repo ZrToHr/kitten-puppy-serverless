@@ -19,8 +19,7 @@ const UserRegister = async (event: PostConfirmationTriggerEvent) => {
   } catch (e) {
     console.log('User Register Failed: ', e.message);
   }
-  // return to cognito with {} object as it's a contract requested by cognito.
-  return {};
+  return event;
 };
 
 export const main = middyfy(UserRegister);
