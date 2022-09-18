@@ -22,5 +22,5 @@ interface Authorizer {
 export const authorizer: Authorizer = {
   name: 'authorizer',
   type: 'COGNITO_USER_POOLS',
-  arn: { 'Fn::GetAtt': ['CognitoUserPool', 'Arn'] },
+  arn: { 'Fn::GetAtt': ['CognitoUserPoolAuthPool', 'Arn'] },
 };
