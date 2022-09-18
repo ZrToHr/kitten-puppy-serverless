@@ -7,6 +7,7 @@ export interface Album {
 
 export interface AlbumPhoto {
   PhotoName: string;
+  PhotoId: string;
   PhotoType: string;
-  PhotoSignedUrl: string;
+  PhotoSignedUrl?: string;
 }

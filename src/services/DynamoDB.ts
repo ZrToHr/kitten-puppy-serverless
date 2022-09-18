@@ -218,6 +218,46 @@ const Dynamo = {
 
     return res.Attributes;
   },
+  appendList: async <T = Item>({
+    tableName,
+    pkKey,
+    pkValue,
+    skKey,
+    skValue,
+    listKey,
+    listItem,
+  }: {
+    tableName: string;
+    pkKey: string;
+    pkValue: string;
+    skKey?: string;
+    skValue?: string;
+    listKey: string;
+    listItem: T;
+  }) => {
+    const params: UpdateCommandInput = {
+      TableName: tableName,
+      Key: { [pkKey]: pkValue },
+      UpdateExpression: `set #listKey = list_append(#listKey, :listItem)`,
+      ExpressionAttributeValues: {
+        ':listItem': listItem,
+        ':pkValue': pkValue,
+      },
+      ExpressionAttributeNames: {
+        '#listKey': listKey,
+        '#pkKey': pkKey,
+      },
+      ReturnValues: 'ALL_NEW',
+      ConditionExpression: `#pkKey = :pkValue`,
+    };
+    if (skKey && skValue) {
+      params.Key[skKey] = skValue;
+    }
+
+    const res = await ddbClient.send(new UpdateCommand(params));
+
+    return res.Attributes;
+  },
   batchWrite: async ({ tableName, tableData }: { tableName: string; tableData: any[] }) => {
     const formattedRequestItems = tableData.map(item => ({
       PutRequest: {
