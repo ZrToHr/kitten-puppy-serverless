@@ -8,7 +8,7 @@ export default {
     {
       http: {
         method: 'post',
-        path: 'retrieve',
+        path: 'upload',
         cors: corsSettings,
         authorizer,
         request: {
