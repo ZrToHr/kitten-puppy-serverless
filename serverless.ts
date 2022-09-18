@@ -3,6 +3,8 @@ import UserRegister from '@functions/UserRegister';
 import AlbumTable from 'resources/dynamodb-tables';
 import CognitoResources from './resources/cognito-userpool';
 import AssetBuckets from './resources/asset-buckets';
+import AlbumUpload from '@functions/AlbumUpload';
+import AlbumRetrieve from '@functions/AlbumRetrieve';
 
 const serverlessConfiguration: AWS = {
   service: 'kitten-puppy-serverless',
@@ -38,7 +40,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { UserRegister },
+  functions: { UserRegister, AlbumRetrieve, AlbumUpload },
   package: { individually: true },
   custom: {
     tables: {
