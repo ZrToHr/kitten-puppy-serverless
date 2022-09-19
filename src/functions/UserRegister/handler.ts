@@ -1,21 +1,21 @@
 import { middyfy } from '@libs/lambda';
 import { PostConfirmationTriggerEvent } from 'aws-lambda';
+import { Album } from 'src/model/Album';
 import Dynamo from '../../services/DynamoDB';
 
 const UserRegister = async (event: PostConfirmationTriggerEvent) => {
   try {
-    const data = {
+    const data: Album = {
       UserId: event.request.userAttributes['sub'],
       AlbumOwner: event.request.userAttributes['name'],
       UserEmail: event.request.userAttributes['email'],
+      AlbumPhotos: [],
     };
 
     await Dynamo.write({
       data: data,
       tableName: process.env.AlbumTable,
     });
-
-    console.log('User Register Succeeded with: ', data);
   } catch (e) {
     console.log('User Register Failed: ', e.message);
   }
