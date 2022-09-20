@@ -240,14 +240,14 @@ const Dynamo = {
       Key: { [pkKey]: pkValue },
       UpdateExpression: `set #listKey = list_append(#listKey, :listItem)`,
       ExpressionAttributeValues: {
-        ':listItem': listItem,
+        ':listItem': [listItem],
         ':pkValue': pkValue,
       },
       ExpressionAttributeNames: {
         '#listKey': listKey,
         '#pkKey': pkKey,
       },
-      ReturnValues: 'ALL_NEW',
+      ReturnValues: 'UPDATED_NEW',
       ConditionExpression: `#pkKey = :pkValue`,
     };
     if (skKey && skValue) {

@@ -35,6 +35,7 @@ const albumUpload: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async eve
 
     return formatJSONResponse({ body: photo });
   } catch (e) {
+    console.log(e.message);
     return formatJSONResponse({ body: { message: e.message }, statusCode: 400 });
   }
 };

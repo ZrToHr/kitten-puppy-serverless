@@ -24,6 +24,7 @@ const albumRetrieve: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async e
     });
     return formatJSONResponse({ body: album });
   } catch (e) {
+    console.log(e.message);
     return formatJSONResponse({ body: { message: e.message }, statusCode: 400 });
   }
 };
