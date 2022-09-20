@@ -15,13 +15,16 @@ const albumRetrieve: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async e
       pkKey: 'UserId',
       pkValue: userId,
     });
-    album.AlbumPhotos.map(async photo => {
+
+    for (const [index, photo] of album.AlbumPhotos.entries()) {
       const command = new GetObjectCommand({
         Bucket: process.env.AlbumBucket,
         Key: `${userId}/${photo.PhotoId}/${photo.PhotoName}`,
       });
-      photo.PhotoSignedUrl = await getSignedUrl(s3Client, command, { expiresIn: 3600 });
-    });
+      album.AlbumPhotos[index].PhotoSignedUrl = await getSignedUrl(s3Client, command, { expiresIn: 3600 });
+    }
+    console.log('retrieve response: ', album);
+
     return formatJSONResponse({ body: album });
   } catch (e) {
     console.log(e.message);

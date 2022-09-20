@@ -33,6 +33,8 @@ const albumUpload: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async eve
 
     photo.PhotoSignedUrl = await getSignedUrl(s3Client, command, { expiresIn: 3600 });
 
+    console.log('upload response: ', photo);
+
     return formatJSONResponse({ body: photo });
   } catch (e) {
     console.log(e.message);
