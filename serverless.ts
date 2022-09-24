@@ -20,6 +20,11 @@ const serverlessConfiguration: AWS = {
         Action: 'dynamodb:*',
         Resource: ['arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tables.AlbumTable}'],
       },
+      {
+        Effect: 'Allow',
+        Action: 's3:*',
+        Resource: ['arn:aws:s3:::${self:custom.assetBuckets.AlbumBucket}/*'],
+      },
     ],
     apiGateway: {
       minimumCompressionSize: 1024,
